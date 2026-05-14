@@ -17,7 +17,10 @@ cask "multizen" do
   end
 
   auto_updates false
-  depends_on macos: ">= :sonoma"
+  # Electron 33 supports macOS 11 Big Sur and up. Match the binary's
+  # actual minimum so audit's "artifact :big_sur vs cask :sonoma"
+  # warning doesn't fire.
+  depends_on macos: ">= :big_sur"
 
   app "MultiZen.app"
 
