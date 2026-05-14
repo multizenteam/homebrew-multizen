@@ -24,11 +24,19 @@ cask "multizen" do
 
   app "MultiZen.app"
 
-  # Brew already strips the quarantine attribute on install, so users
-  # do not need to run `xattr -cr` manually. The same Gatekeeper
-  # "damaged" dialog that direct DMG downloads hit does not appear
-  # for cask installs — Homebrew is treated as a trusted source
-  # because the cask explicitly bypasses the quarantine bit.
+  # MultiZen is ad-hoc signed but not Apple-notarized (no Developer
+  # ID yet). Brew applies its own quarantine attribute by default,
+  # which makes Sequoia show the "is damaged" Gatekeeper dialog even
+  # on cask-installed apps. Strip the quarantine flag after install
+  # so users can launch the app from Finder without friction.
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-d", "com.apple.quarantine", "#{appdir}/MultiZen.app"],
+                   must_succeed: false
+    system_command "/usr/bin/xattr",
+                   args: ["-cr", "#{appdir}/MultiZen.app"],
+                   must_succeed: false
+  end
 
   zap trash: [
     "~/Library/Application Support/MultiZen",
