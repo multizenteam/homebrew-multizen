@@ -1,9 +1,9 @@
 cask "multizen" do
   arch arm: "arm64", intel: "x64"
 
-  version "0.2.4"
-  sha256 arm:   "e8d6d9c6a8e35a1a767cc0b74e12722eac24466c0747ba31db24502dadf2bd8f",
-         intel: "0726bd82348abeb32da1f3a05808cb3a824760ebe73d8e74a6bab9c662091a67"
+  version "0.2.5"
+  sha256 arm:   "f82892d0e2f5f21cbeb555278db131798254e06c635da1c9eba6252072a5cde3",
+         intel: "ec2ea4bf6297b9f7815845377f23664b0ad1db448d991ec568b0b8cd638c28e4"
 
   url "https://github.com/multizenteam/multizen-browser/releases/download/v#{version}/MultiZen-mac-#{arch}.dmg",
       verified: "github.com/multizenteam/multizen-browser/"
